@@ -1,5 +1,7 @@
+import { Link, useMatch, useResolvedPath } from 'react-router-dom';
 import React from 'react';
 import './NavBar.css'; // Import the CSS file for styling
+import Home from './components/Home';
 
 const NavBar = () => {
   return (
