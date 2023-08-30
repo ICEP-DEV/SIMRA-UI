@@ -1,49 +1,49 @@
-import NavBar from './NavBar';
-import React from 'react';
+import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter as Router, Route, Link,Routes } from 'react-router-dom';
-import Home from './components/Home';
-import About from './components/About';
-import Contact from './components/Contact';
 
 function App() {
   return (
     <div className="App">
-      <NavBar />
       <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      <Router>
-        <nav className="navbar">
-          <div className="navbar-left">
-            <div className="logo">Logo</div>
+        <h2 className="registration-heading">Registration</h2>
+        <div className="form-container">
+          <div className="form-group">
+            <label className="form-label" for="reg-firstname">First Name:</label>
+            <input className="form-input" type="text" id="reg-firstname" placeholder="Enter your first name" />
+            <label className="form-label" for="reg-firstname">Last Name:</label>
+            <input className="form-input" type="text" placeholder="Enter your last name" />
           </div>
-          <div className="navbar-right">
-            <ul className="nav-links">
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="./about">About</Link></li>
-              <li><Link to="/contact">Contact</Link></li>
-              <li><a href="#">Sign In</a></li>
-            </ul>
+          <div className="form-group">
+            <label className="form-label" for="reg-email">Email:</label>
+            <input className="form-input" type="email" id="reg-email" placeholder="Enter your email" />
+            <label className="form-label" for="reg-mobile">Mobile No:</label>
+            <input className="form-input" type="tel" placeholder="xxxxxxxxxx" />
           </div>
-        </nav>
-        <Routes>
-          <Route exact path="/" element={Home} />
-          <Route path="/about" element={About} />
-          <Route path="/contact" element={Contact} />
-        </Routes>
-      </Router>
+          <div className="form-group">
+            <label className="form-label"></label>
+            <select className="form-select">
+            <option value="" disabled selected>Select Level</option> 
+              <option>Basic</option>
+              <option>Intermediate</option>
+              <option>Expert</option>
+            </select>
+          </div>
+          <div className="form-group">
+            <label className="form-label" for="reg-company">Company Name:</label>
+            <input className="form-input" type="text" id="reg-company" placeholder="Enter your company name" />
+            <label className="form-label" for="reg-staffid">StaffID:</label>
+            <input className="form-input" type="text" id="reg-staffid" placeholder="000000 0000 000" />
+          </div>
+          <div className="form-group">
+            <label className="form-label" for="reg-password">Password:</label>
+            <input className="form-input" type="password" id="reg-password" placeholder="Enter your password" />
+            <label className="form-label" for="reg-confirm-password">Confirm Password:</label>
+            <input className="form-input" type="password" placeholder="Confirm your password" />
+          </div>
+          <button className="submit-button">Register</button>
+        </div>
+      </header>   
     </div>
   );
 }
-export default App;
+export default App
