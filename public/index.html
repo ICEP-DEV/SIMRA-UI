@@ -1,53 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
     <!DOCTYPE html>
     <html lang="en">
     <head>
-      <body>
-       
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Email and Phone Verification</title>
+        <style>
+            /* Add your CSS styles here */
+        </style>
+    </head>
+    <body>
+        <div>
+            <h1>Email and Phone Verification</h1>
+            <form id="verification-form">
+                <input type="email" id="email" placeholder="Enter Email" required>
+                <button type="button" id="send-email-code">Send Email Code</button>
+                <br>
+                <input type="text" id="verification-code" placeholder="Enter Code" required>
+                <button type="submit">Verify</button>
+                <br>
+                <input type="tel" id="phone" placeholder="Enter Phone Number" required>
+                <button type="button" id="send-phone-code">Send Phone Code</button>
+                <br>
+                <input type="text" id="verification-code" placeholder="Enter Code" required>
+                <button type="submit">Verify</button>
+            </form>
+            <p id="verification-status"></p>
+        </div>
         
-      </body>
-      
-      
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const verificationForm = document.getElementById('verification-form');
+                const emailInput = document.getElementById('email');
+                const phoneInput = document.getElementById('phone');
+                const verificationCodeInput = document.getElementById('verification-code');
+                const verificationStatus = document.getElementById('verification-status');
+                
+                // Function to send a verification code (simulated)
+                function sendVerificationCode(type, destination) {
+                    const code = generateVerificationCode();
+                    alert(`Sending ${type} verification code: ${code} to ${destination}`);
+                }
+                
+                // Function to generate a random 6-digit code
+                function generateVerificationCode() {
+                    return Math.floor(100000 + Math.random() * 900000);
+                }
+                
+                document.getElementById('send-email-code').addEventListener('click', () => {
+                    const email = emailInput.value;
+                    if (email) {
+                        sendVerificationCode('email', email);
+                    }
+                });
+                
+                document.getElementById('send-phone-code').addEventListener('click', () => {
+                    const phone = phoneInput.value;
+                    if (phone) {
+                        sendVerificationCode('phone', phone);
+                    }
+                });
+                
+                verificationForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const enteredCode = verificationCodeInput.value;
+                    const email = emailInput.value;
+                    const phone = phoneInput.value;
+                    
+                    // Here, send the entered code to backend for verification.
+                    // example, simulate a successful verification.
+                    const simulatedVerificationCode = '123456'; // Simulated correct code
+                    
+                    if (enteredCode === simulatedVerificationCode) {
+                        verificationStatus.textContent = 'Verification successful!';
+                    } else {
+                        verificationStatus.textContent = 'Verification code is incorrect. Please try again.';
+                    }
+                });
+            });
+        </script>
+    </body>
+    </html>
+    
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
-</html>
+    
