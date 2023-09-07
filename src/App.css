@@ -1,38 +1,78 @@
-.App {
-  text-align: center;
+/* styles/HomePage.css */
+
+.homepage {
+  font-family: Arial, sans-serif;
+  padding: 40px;
+  margin-right: 25px;
+  justify-content: space-between;
+  font-size: 30px;
+  padding: 20px 0; /* Add padding to create space above and below the navigation */
+
+  /* Center the links horizontally if needed */
+  text-align: center
+  
+
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url('/assest/banner.jpg'); /* Adjust the path to your image */
+  background-color: rgba(255, 255, 255, 0);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  font-family: Arial, sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+/* ... rest of your existing styles ... */
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#home {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50vh; /* This ensures the section takes up the full viewport height */
+  text-align: center; /* Center-align text within the section */
+}
+
+
+.login-signup button {
+  background-color: #000000;
+  font-size: 30px;
+  align-items: center;
+  color: rgb(255, 255, 255);
+  border: none;
+  padding: 20px 30px;
+  cursor: pointer;
+}
+
+
+main {
+  padding: 20px;
+ 
+}
+
+
+h1 {
+  font-size: 70px;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+p {
+  font-size: 28px;
+  color: rgb(255, 255, 255);
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+ 
 
-.App-link {
-  color: #61dafb;
 }
+/* styles/HomePage.css */
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+/* ... Existing styles ... */
+
+/* Animation for the home section */
