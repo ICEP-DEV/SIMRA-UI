@@ -1,15 +1,7 @@
-/* Home.css */
-.page-container {
-    padding: 20px;
-  }
-  
-  .page-title {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  
-  .page-content {
-    font-size: 16px;
-    line-height: 1.5;
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Adjust the spacing as needed */
   }
   
