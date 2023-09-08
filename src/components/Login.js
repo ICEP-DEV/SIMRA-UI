@@ -10,7 +10,7 @@ import { useState } from 'react';
 function Login() {
     let navigate = useNavigate();
     const [values, setValues] = useState({
-        username: "",
+        mobileNo: "",
         password: ""
     });
 
@@ -30,11 +30,11 @@ function Login() {
 
     // set up login button using gmail account
     const onSuccess = async() => {
-        if (values.username == "" && values.password == "") {
+        if (values.mobileNo == "" && values.password == "") {
             console.log("All field should be filled")
             return;
         }
-        if (values.username == "") {
+        if (values.mobileNo == "") {
             console.log("Enter username")
             return;
         }
@@ -43,11 +43,11 @@ function Login() {
             return;
         }
 
-        const loginData =  await axios.post('http://localhost:3001/api/login',values)
+        const loginData =  await axios.post('http://localhost:3005/api/login',values)
         console.log(loginData.data)
         if(loginData.data.success == true){
             console.log(loginData.data.message);
-            navigate('/sanitaryInpection')
+            navigate('/Home')
         }
         else{
             console.log(loginData.data.message);
@@ -79,7 +79,7 @@ function Login() {
                     <h3 className='text-center mb-5'><b>Login here</b></h3>
                     <div className='mb-4'>
                         <label htmlFor='username' className='lables'>Username</label> <br />
-                        <input type="username" onChange={handleChangeUpdate} name='username' value={setValues.username} placeholder='Enter Username' className='form-control' />
+                        <input type="text" onChange={handleChangeUpdate} name='mobileNo' value={setValues.mobileNo} placeholder='Enter Username' className='form-control' />
                         
                     </div>
 
