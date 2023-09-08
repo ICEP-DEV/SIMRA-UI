@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
+<<<<<<< HEAD
 import Home from './components/Home/Home';
 import Water from './components/Water';
 import Sampling from './components/Sampling';
@@ -11,9 +12,16 @@ import Survey from './components/Survey';
 import Test from './components/Test';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './components/Login';
+=======
+>>>>>>> main
 
-function App() {
+
+
+const HomePage = () => {
+
+  
   return (
+<<<<<<< HEAD
     <BrowserRouter>
       <Routes>
       <Route path='/' element={<Login />}></Route>
@@ -34,3 +42,29 @@ function App() {
 }
 
 export default App;
+=======
+
+
+    
+    <div className="homepage">
+    
+      <main>
+        <section id="home">
+          <h1>Welcome to SIMRA</h1>
+          <p>Explore, Connect, Learn Water Safety Plans (WSP) and Sanitation Safety Plans (SSP).</p>
+        </section>
+        
+        <div className="login-signup"> 
+          <button>Get Started</button>
+          
+  
+        </div>
+         
+        
+      </main>
+    </div>
+  );
+};
+
+export default HomePage;
+>>>>>>> main
