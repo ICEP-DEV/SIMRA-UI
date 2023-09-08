@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import './level1.css';
 
 const ButtonGroup = () => {
     const navigate = useNavigate();
