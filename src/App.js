@@ -22,7 +22,7 @@ const App = () => {
 
     <BrowserRouter>
       <Routes>
-      <Route path='/' element={<Login />}></Route>
+      <Route path='/' element={<Level1 />}></Route>
         <Route path='/Home' element={<Home />}></Route>
         <Route path='/Water' element={<Water />}></Route>
         <Route path='/Sampling' element={<Sampling />}></Route>
