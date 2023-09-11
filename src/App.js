@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
-<<<<<<< HEAD
+
 import Home from './components/Home/Home';
 import Water from './components/Water';
 import Sampling from './components/Sampling';
@@ -12,16 +12,14 @@ import Survey from './components/Survey';
 import Test from './components/Test';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './components/Login';
-=======
->>>>>>> main
+import RegisterForm from './components/RegisterForm'
 
 
-
-const HomePage = () => {
+const App = () => {
 
   
   return (
-<<<<<<< HEAD
+
     <BrowserRouter>
       <Routes>
       <Route path='/' element={<Login />}></Route>
@@ -33,6 +31,7 @@ const HomePage = () => {
         <Route path='/Level' element={<Level1 />}></Route>
         <Route path='/Survey' element={<Survey />}></Route>
         <Route path='/Test' element={<Test />}></Route>
+        <Route path='/Register' element={<RegisterForm />}></Route>
 
 
       </Routes>
@@ -42,29 +41,4 @@ const HomePage = () => {
 }
 
 export default App;
-=======
-
-
     
-    <div className="homepage">
-    
-      <main>
-        <section id="home">
-          <h1>Welcome to SIMRA</h1>
-          <p>Explore, Connect, Learn Water Safety Plans (WSP) and Sanitation Safety Plans (SSP).</p>
-        </section>
-        
-        <div className="login-signup"> 
-          <button>Get Started</button>
-          
-  
-        </div>
-         
-        
-      </main>
-    </div>
-  );
-};
-
-export default HomePage;
->>>>>>> main

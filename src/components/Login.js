@@ -76,7 +76,7 @@ function Login() {
             <div className='login template d-flex  justify-content-center align-items-center vh-100 background: #ffffff;'>
                 <div className='form_container p-5 bg-white  rounded'>
                     <h3 className='text-center mb-5'><b>SIMRA</b></h3>
-                    <h3 className='text-center mb-5'><b>Login here</b></h3>
+                    <h3 className='text-center mb-5'><b>SIGN IN here</b></h3>
                     <div className='mb-4'>
                         <label htmlFor='username' className='lables'>Username</label> <br />
                         <input type="text" onChange={handleChangeUpdate} name='mobileNo' value={setValues.mobileNo} placeholder='Enter Username' className='form-control' />
@@ -99,7 +99,7 @@ function Login() {
 
 
                     <small>
-                        Don't have an account ? <Link to="/signup" className='ms-2'>Sign Up</Link>
+                        Don't have an account ? <Link to="/Register" className='ms-2'>Sign Up</Link>
                     </small>
                 </div>
 
