@@ -1,33 +1,25 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 
+import Test from './components/Test';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-const HomePage = () => {
+const App = () => {
 
   
   return (
 
+    <BrowserRouter>
+      <Routes>
+      <Route path='/' element={<Test />}></Route>
+        
+      </Routes>
 
-    
-    <div className="homepage">
-    
-      <main>
-        <section id="home">
-          <h1>Welcome to SIMRA</h1>
-          <p>Explore, Connect, Learn Water Safety Plans (WSP) and Sanitation Safety Plans (SSP).</p>
-        </section>
-        
-        <div className="login-signup"> 
-          <button>Get Started</button>
-          
-  
-        </div>
-         
-        
-      </main>
-    </div>
+    </BrowserRouter>
   );
-};
+}
 
-export default HomePage;
+export default App;
+    
