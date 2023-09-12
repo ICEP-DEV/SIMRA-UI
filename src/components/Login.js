@@ -28,7 +28,6 @@ function Login() {
     //for seeing the data in the console bar
     const onSubmit = (data) => console.log(data);
 
-    // set up login button using gmail account
     const onSuccess = async() => {
         if (values.mobileNo == "" && values.password == "") {
             console.log("All field should be filled")
@@ -43,13 +42,13 @@ function Login() {
             return;
         }
 
-        const loginData =  await axios.post('http://localhost:3005/api/login',values)
+        const loginData =  await axios.post('http://localhost:3000/api/login',values)
         console.log(loginData.data)
         if(loginData.data.success == true){
             console.log(loginData.data.message);
             navigate('/Home')
         }
-        else{
+        else{ 
             console.log(loginData.data.message);
         }
 
