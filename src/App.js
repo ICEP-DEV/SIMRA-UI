@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
-
 import Home from './components/Home/Home';
 import Water from './components/Water';
 import Sampling from './components/Sampling';
@@ -12,7 +11,7 @@ import Survey from './components/Survey';
 import Test from './components/Test';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './components/Login';
-import RegisterForm from './components/RegisterForm'
+import RegisterForm from './components/RegisterForm';
 
 
 const App = () => {
@@ -32,6 +31,7 @@ const App = () => {
         <Route path='/Survey' element={<Survey />}></Route>
         
         <Route path='/Register' element={<RegisterForm />}></Route>
+        <Route path='/Test' element={<Test />}></Route>
 
 
       </Routes>

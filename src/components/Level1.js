@@ -232,72 +232,7 @@ const handleButtonClick = (color) => {
           <br></br>
 
          
-          <div className="menu-item" style={divStyle} onClick={() => handleMenuClick('h2s')}>
-            H2S TEST {completedProcessH2S && <span style={{ marginLeft: '90px' }}>{completedProcessH2S}</span>}
-
-          </div>
-          {activeMenu === 'h2s' && (
-            <div className="submenu">
-              <button
-                className="yellow"
-                id="yellow"
-                name="test_color"
-                value="YELLOW"
-                color='black'
-                onClick={() => handleButtonClick('Yellow')}
-              >
-                WHITE
-              </button>
-
-              <button
-                className="black"
-                id="black"
-                name="test_color"
-                value="BLACK"
-                onClick={() => handleButtonClick('Black')}
-              >
-                Black
-              </button>
-              {isYellowTextVisible && (
-                <div>
-                  <p>Absence of faecal contamination</p>
-                </div>
-              )}
-
-              {isBlackTextVisible && (
-                <div>
-                  <table>
-
-                    <div className='th'> <tr>METHOD 1: Boiling water</tr></div>
-                    <tr><td><ol>
-                      <li>Collect water and filter it with a cloth, towel, or water filter.</li>
-                      <li>Bring your water to a rolling boil for 1-3 minutes.</li>
-                      <li>Allow the water to cool and store it in covered containers</li>
-                    </ol></td>
-                    </tr>
-                    <div className='th'><tr> METHOD 2: Disinfecting Water with Chlorine Bleach</tr></div>
-                    <tr><td><ol>
-                      <li>Buy regular chlorine bleach labelled for water sanitation.</li>
-                      <li>Add clear water to a container.</li>
-                      <li>Use an eye dropper to add bleach to your water. The exact number of drops depends on the amount of water.</li>
-                      <li>Stir the bleach into the water and let it stand for 30 minutes. After 30 minutes, the water should have a slight chlorine smell. If it doesn’t, add the same quantity of bleach again, mix it in, and let the water sit for another 15 minutes. The water will be safe to drink.</li>
-                    </ol></td>
-                    </tr>
-                    <div className='th'><tr>METHOD 3: Using Sunlight to Purify Water </tr></div>
-                    <tr><td><ol>
-                      <li>Fill 4-5 clear plastic bottles with water. </li>
-                      <li>Shake the bottle to mix air into the water.</li>
-                      <li>Lay the bottles on their side in sunlight for 6-48 hours.</li>
-                      <li>After 6 hours in full sunlight (or 48 hours in cloudy weather), the water is safe to drink.</li>
-                    </ol></td>
-                    </tr>
-
-
-                  </table>
-                </div>
-              )}
-            </div>
-          )}
+    
           <br></br>
           <button type="submit" value="Submit" style={divStyleSubmit}>SUBMIT</button>
         </div></>
