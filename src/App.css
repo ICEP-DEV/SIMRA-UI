@@ -18,7 +18,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-image: url('/assest/banner.jpg'); /* Adjust the path to your image */
+ 
   background-color: rgba(255, 255, 255, 0);
   background-size: cover;
   background-position: center;

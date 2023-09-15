@@ -1,0 +1,7 @@
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Adjust the spacing as needed */
+  }
+  
