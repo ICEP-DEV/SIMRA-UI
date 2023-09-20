@@ -12,33 +12,24 @@ import Test from './components/Test';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './components/Login';
 import RegisterForm from './components/RegisterForm';
-
+import RiskLevelPage from './components/Risk-Level' // Import the RiskLevelPage component
 
 const App = () => {
-
-  
   return (
-
     <BrowserRouter>
       <Routes>
-      <Route path='/' element={<Level1 />}></Route>
-        <Route path='/Home' element={<Home />}></Route>
-        <Route path='/Water' element={<Water />}></Route>
-        <Route path='/Sampling' element={<Sampling />}></Route>
-    
-       
-        <Route path='/Level' element={<Level1 />}></Route>
-        <Route path='/Survey' element={<Survey />}></Route>
-        
-        <Route path='/Register' element={<RegisterForm />}></Route>
-        <Route path='/Test' element={<Test />}></Route>
-
-
+        <Route path='/' element={<Level1 />} />
+        <Route path='/Home' element={<Home />} />
+        <Route path='/Water' element={<Water />} />
+        <Route path='/Sampling' element={<Sampling />} />
+        <Route path='/Level' element={<Level1 />} />
+        <Route path='/Survey' element={<Survey />} />
+        <Route path='/Risk-Level' element={<RiskLevelPage />} /> 
+        <Route path='/Register' element={<RegisterForm />} />
+        <Route path='/Test' element={<Test />} />
       </Routes>
-
     </BrowserRouter>
   );
 }
 
 export default App;
-    

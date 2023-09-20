@@ -2,6 +2,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import React, { Component }  from 'react';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 function SanitaryInpection() {
   
@@ -11,8 +13,9 @@ function SanitaryInpection() {
   const [completedProcessSanitarySurvey, setcompletedProcessSanitarySurvey] = useState('Completed 0/8');
   const [completedQuestions, setCompletedQuestions] = useState(0);
   const [showRiskLevel, setShowRiskLevel] = useState(false);
-  
-  
+  const navigate = useNavigate();
+
+   
   
   const [question1Answer, setQuestion1Answer] = useState('');
   const [question2Answer, setQuestion2Answer] = useState('');
@@ -28,7 +31,7 @@ function SanitaryInpection() {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    height: '50vh', 
+    height: '75vh', 
     flexDirection: 'column', 
   };
   
@@ -118,45 +121,47 @@ function SanitaryInpection() {
   
   return percentage.toFixed(2);
   };
+
+  const percentage = calculatePercentage(); // Calculate the risk percentage
+let riskLevelBlock = null; // Initialize the risk level block to null
+
+if (percentage <= 25) {
+  riskLevelBlock = (
+    <div style={{ backgroundColor: 'green', padding: '5px' }}>
+      <span style={{ color: 'black' }}>Low Risk</span>
+    </div>
+  );
+} else if (percentage <= 50) {
+  riskLevelBlock = (
+    <div style={{ backgroundColor: 'yellow', padding: '5px' }}>
+      <span style={{ color: 'black' }}>Medium Risk</span>
+    </div>
+  );
+} else if (percentage <= 75) {
+  riskLevelBlock = (
+    <div style={{ backgroundColor: 'orange', padding: '5px' }}>
+      <span style={{ color: 'black' }}>High Risk</span>
+    </div>
+  );
+} else {
+  riskLevelBlock = (
+    <div style={{ backgroundColor: 'red', padding: '5px' }}>
+      <span style={{ color: 'black' }}>Very High Risk</span>
+    </div>
+  );
+}
   const handleFormSubmit = () => {
-    
-    const yesAnswers = [
-      question1Answer,
-      question2Answer,
-      question3Answer,
-      question4Answer,
-      question5Answer,
-      question6Answer,
-      question7Answer,
-      question8Answer,
-    ];
-  
-    
-    const criteria = {
-      lowRisk: 2,      
-    mediumRisk: 4,   
-    highRisk: 6,
-    };
-  
-   const totalYesAnswers = yesAnswers.filter((answer) => answer === 'Yes').length;
-  
-   
-    let riskLevel = 'Unknown';
-  
-    if (totalYesAnswers <= criteria.lowRisk) {
-      riskLevel = 'Low Risk';
-    } else if (totalYesAnswers <= criteria.mediumRisk) {
-      riskLevel = 'Medium Risk';
-    } else if (totalYesAnswers <= criteria.highRisk) {
-      riskLevel = 'High Risk';
-    } else {
-      riskLevel = 'Very High Risk';
-    }
-  
     setShowRiskLevel(true);
-  
-    console.log(`Risk Level: ${riskLevel}`);
   };
+  const showMethods = () => {
+    setShowRiskLevel(true);
+    navigate(`/Risk-Level`);
+  };
+  
+  
+  console.log('Percentage:', percentage);
+  console.log('Risk Level:', riskLevelBlock);
+  console.log('Show Risk Level:', showRiskLevel);
   
     return (
         
@@ -349,25 +354,34 @@ function SanitaryInpection() {
               
             </div>
           )}
+
+<Popup trigger=
+                {<button
+                  type="button"
+                  onClick={handleFormSubmit}
+                  style={divStyleSubmit}
+                >
+                  Show Risk Level
+                </button>}
+                modal nested>
+                {
+                    close => (
+                      <div>
+                      Risk Level:
+                      {riskLevelBlock}
+                      <br></br>
+                      <button
+                    type="button"
+                    onClick={showMethods}
+                    style={divStyleSubmit}
+                  >
+                    SHOW METHODS
+                  </button>
+                    </div>
+                    )
+                }
+            </Popup>
   
-         
-  <button
-          type="button"
-          onClick={handleFormSubmit}
-          style={divStyleSubmit}
-        >
-          SUBMIT
-        </button>
-  
-        {showRiskLevel && (
-  <div>
-    Risk Level:
-    {calculatePercentage() <= 25 && <span style={{ color: 'green' }}>Low Risk</span>}
-    {calculatePercentage() > 25 && calculatePercentage() <= 50 && <span style={{ color: 'yellow' }}>Medium Risk</span>}
-    {calculatePercentage() > 50 && calculatePercentage() <= 75 && <span style={{ color: 'orange' }}>High Risk</span>}
-    {calculatePercentage() > 75 && <span style={{ color: 'red' }}>Very High Risk</span>}
-  </div>
-)}
 
         </div></>
     );
