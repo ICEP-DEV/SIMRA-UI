@@ -6,7 +6,7 @@ function RiskLevelPage({ showRiskLevel, riskLevelBlock }) {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        height: '150vh', 
+        height: '160vh', 
         flexDirection: 'column', 
         
       }
