@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Municipalities by Province</title>
+</head>
+<body>
+  <div class="container mt-5">
+    <h1>Select a Province and Municipality</h1>
+
+    <form id="municipality-form">
+      <div class="form-group">
+        <label for="province-select">Select a Province:</label>
+        <select id="province-select" class="form-control">
+          <option value="">--Select--</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="municipality-select">Select Municipality:</label>
+        <select id="municipality-select" class="form-control">
+          <option value="">--Select--</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+
+    </form>
+
+    <div id="result" class="mt-3"></div>
+
+  </div>
+
+    <!-- Include Bootstrap JS and jQuery (optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        const provinces = [
+            'Free State',
+            'Gauteng',
+            'Kwazulu-Natal',
+            'Limpopo',
+            'Mpumalanga',
+            'North west',
+            'Western cape',
+            'Eastern cape',
+            'Northern Cape',
+        ];
+
+        const municipalitiesByProvince = {
+            'Free State': ['Mafube Local','Metsimaholo Local','Moqhaka Local','Ngwathe Local','Masilonyana Local','Matjhabeng Local','Nala Local','Tokologo Local'],
+            'Gauteng': ['City of Ekurhuleni Metropolitan','City of Johannesburg Metropolitan','City of Tshwane Metropolitan','Emfuleni Local','Lesedi Local','Midvaal Local','Merafong City Local','Mogale City Local'],
+            'Kwazulu-Natal': ['eThekwini Metropolitan','Dannhauser Local','eMadlangeni Local','Newcastle Local','Dr Nkosazana Dlamini Zuma Local','Greater Kokstad Local','Ubuhlebezwe Local','Umzimkhulu Local'],
+            'Limpopo': ['Blouberg Local','Lepelle-Nkumpi Local','Molemole Local','Polokwane Local','Ba-Phalaborwa Local','Greater Giyani Local','Greater Letaba Local','Greater Tzaneen Local'],
+            'Mpumalanga': ['City of Mbombela Local','Nkomazi Local','Bushbuckridge Local','Thaba Chweu Local','Chief Albert Luthuli Local','Dipaleseng Local','Dr Pixley Ka Isaka Seme Local','Govan Mbeki Local'],
+            'North west': ['Kgetlengrivier Local','Madibeng Local','Moretele Local','City of Matlosana Local','Moses Kotane Local','Rustenburg Local','JB Marks Local','Maquassi Hills Local'],
+            'Western cape': ['City of Cape Town Metropolitan','Breede Valley Local','Drakenstein Local','Langeberg Local','Stellenbosch Local','Witzenberg Local','Beaufort West Local','Laingsburg Local'],
+            'Eastern cape': ['Buffalo City Metropolitan','Nelson Mandela Bay Metropolitan','Matatiele Local','Ntabankulu Local','Umzimvubu Local','Winnie Madikizela-Mandela Local','Amahlathi Local','Great Kei Local'],
+            'Northern Cape': ['Dikgatlong Local','Magareng Local','Phokwane Local','Sol Plaatje Local','Ga-Segonyana Local','Gamagara Local','Joe Morolong Local','Hantam Local'],
+        };
+
+        // Populate the province dropdown
+        const provinceSelect = document.getElementById("province-select");
+
+        provinces.forEach((province) => {
+            const option = document.createElement("option");
+            option.value = province;
+            option.textContent = province;
+            provinceSelect.appendChild(option);
+        });
+
+        // Function to populate the municipality dropdown based on the selected province
+        function populateMunicipalityDropdown(selectedProvince) {
+            const municipalitySelect = document.getElementById("municipality-select");
+            municipalitySelect.innerHTML = ""; // Clear previous options
+
+        if (selectedProvince) {
+            const municipalities = municipalitiesByProvince[selectedProvince] || [];
+            municipalities.forEach((municipality) => {
+                const option = document.createElement("option");
+                option.value = municipality;
+                option.textContent = municipality;
+                municipalitySelect.appendChild(option);
+            });
+        } else {
+            // If "Select" is chosen for the province, show "Select" for the municipality as well
+            const option = document.createElement("option");
+            option.value = "";
+            option.textContent = "Select";
+            municipalitySelect.appendChild(option);
+        }
+     }
+
+     // Event listener for province selection
+     provinceSelect.addEventListener("change", () => {
+         const selectedProvince = provinceSelect.value;
+         populateMunicipalityDropdown(selectedProvince);
+     });
+
+     // Form submission handler
+     const form = document.getElementById("municipality-form");
+     const municipalitySelect = document.getElementById("municipality-select");
+
+     form.addEventListener("submit", function (e) {
+        e.preventDefault(); // Prevent the form from submitting normally
+
+        // Get the selected province and municipality
+        const selectedProvince = provinceSelect.value;
+        const selectedMunicipality = municipalitySelect.value;
+
+        // Display the result
+        const resultDiv = document.getElementById("result");
+        resultDiv.innerHTML = `<p>Selected Province: ${selectedProvince}</p><p>Selected Municipality: ${selectedMunicipality}</p>`;
+     });
+
+    </script>
+</body>
+</html>
+
+
+ 
+
+
+
+
+ 
+
+
