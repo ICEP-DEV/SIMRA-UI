@@ -3,7 +3,12 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import React, { Component }  from 'react';
 import Popup from 'reactjs-popup';
+import Card from 'react-bootstrap/Card';
 import 'reactjs-popup/dist/index.css';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 function SanitaryInpection() {
   
@@ -31,6 +36,7 @@ function SanitaryInpection() {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    borderRadius: '10px',
     height: '75vh', 
     flexDirection: 'column', 
   };
@@ -43,13 +49,18 @@ function SanitaryInpection() {
   };
   
   const divStyleSubmit = {
-    backgroundColor: 'blue',
+    backgroundColor: 'Aqua',
     width: '200px',
-    height: '40px',
+    height: '50px',
     color: 'white',
     textAlign: 'center',
+    
   };
-  
+  const containerStyle = {
+    border: '5px solid Aqua',
+    borderRadius: '10px', // Optional: Add rounded corners
+    padding: '20px', // Optional: Add padding to the container
+  };
   const handleMenuClick = (menu) => {
     setActiveMenu(menu === activeMenu ? null : menu);
   };
@@ -127,7 +138,7 @@ let riskLevelBlock = null; // Initialize the risk level block to null
 
 if (percentage <= 25) {
   riskLevelBlock = (
-    <div style={{ backgroundColor: 'green', padding: '5px' }}>
+    <div style={{ backgroundColor: 'green', padding: '15px' }}>
       <span style={{ color: 'black' }}>Low Risk</span>
     </div>
   );
@@ -167,8 +178,11 @@ if (percentage <= 25) {
         
         
         <>
-      <div className="survey" style={divStyleCentered} backgroundColor='white'>
-        <div>Survey</div>
+        <Container fluid>
+          <Row className="justify-content-center align-items-center min-vh-100">
+          <Col xs={12} sm={8} md={6}>
+          <div backgroundColor='white' style={containerStyle}>
+        <div >Survey</div>
           <div className="menu-item" style={divStyle} onClick={() => handleMenuClick('sanitary')}>
             Sanitary Survey {completedProcessSanitarySurvey && <span style={{ marginLeft: '110px' }}>Completed {completedQuestions}/8</span>}
           </div>
@@ -355,35 +369,50 @@ if (percentage <= 25) {
             </div>
           )}
 
-<Popup trigger=
-                {<button
-                  type="button"
-                  onClick={handleFormSubmit}
-                  style={divStyleSubmit}
-                >
-                  Show Risk Level
-                </button>}
-                modal nested>
-                {
-                    close => (
-                      <div>
-                      Risk Level:
-                      {riskLevelBlock}
-                      <br></br>
-                      <button
-                    type="button"
-                    onClick={showMethods}
-                    style={divStyleSubmit}
-                  >
-                    SHOW METHODS
-                  </button>
-                    </div>
-                    )
-                }
-            </Popup>
+<Popup
+  trigger={
+    <button
+      type="button"
+      onClick={handleFormSubmit}
+      style={divStyleSubmit}
+    >
+      Show Risk Level
+    </button>
+  }
+  modal
+  nested
+  
+  overlayStyle={{
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // This sets the background color with transparency
+  }}
+>
+  {(close) => (
+    
+      <Card style={{ border: '5px solid aqua', margin: 0, padding: 0 }}>
+        <Card.Header>Risk Level:</Card.Header>
+        <Card.Text>{riskLevelBlock}</Card.Text>
+        <Card.Text className="text-center">
+          <button
+            type="button"
+            onClick={showMethods}
+            style={divStyleSubmit}
+          >
+            METHODS
+          </button>
+        </Card.Text>
+      </Card>
+    
+  )}
+</Popup>
+
   
 
-        </div></>
+        </div>
+          </Col>
+          </Row>
+
+        </Container>
+      </>
     );
   
   }

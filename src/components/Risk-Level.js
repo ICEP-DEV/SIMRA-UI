@@ -1,24 +1,39 @@
 import React from 'react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 function RiskLevelPage({ showRiskLevel, riskLevelBlock }) {
 
-    const divStyleCentered = {
+    const navigate = useNavigate();
+    const divStyleCetered = {
         display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '160vh', 
-        flexDirection: 'column', 
-        
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '75vh', 
+    flexDirection: 'column', 
       }
+      const divStyleCentered = {
+        border: '2px solid Aqua',
+        borderRadius: '10px', 
+        justifyContent: 'center',
+    alignItems: 'center',
+        padding: '20px', // Optional: Add padding to the container
+      };
+
+      const divStyleSubmit = {
+        backgroundColor: 'Aqua',
+        width: '200px',
+        height: '50px',
+        color: 'white',
+        textAlign: 'center',
+        
+      };
+      const Levelone = () => {
+        navigate(`/Level1`);
+      };
   return (
     <div className="survey" style={divStyleCentered}>
-      <h1>Methods</h1>
-      {showRiskLevel && (
-        <div>
-          Risk Level:
-          {riskLevelBlock}
-        </div>
-      )}
+      <h1 className="text-center">Methods</h1>
+     
        <div className="text-center">
                             <p className="text-danger">PLEASE FOLLOW THIS METHODS TO PURIFY WATER</p>
 
@@ -148,6 +163,13 @@ function RiskLevelPage({ showRiskLevel, riskLevelBlock }) {
                             </table>
 
                         </div>
+                        <button
+            type="button"
+            onClick={Levelone}
+            style={divStyleSubmit}
+          >
+            Dashboard
+          </button>
     </div>
   );
 }
