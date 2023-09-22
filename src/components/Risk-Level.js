@@ -14,7 +14,7 @@ function RiskLevelPage({ showRiskLevel, riskLevelBlock }) {
     flexDirection: 'column', 
       }
       const divStyleCentered = {
-        border: '2px solid Aqua',
+        border: '2px solid grey',
         borderRadius: '10px', 
         justifyContent: 'center',
     alignItems: 'center',
