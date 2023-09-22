@@ -1,6 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+
 function RiskLevelPage({ showRiskLevel, riskLevelBlock }) {
 
     const navigate = useNavigate();
@@ -163,13 +165,12 @@ function RiskLevelPage({ showRiskLevel, riskLevelBlock }) {
                             </table>
 
                         </div>
-                        <button
-            type="button"
+                        <Button
+                        variant="outline-primary" style={{ width: '50%' }}
             onClick={Levelone}
-            style={divStyleSubmit}
           >
             Dashboard
-          </button>
+          </Button>
     </div>
   );
 }
