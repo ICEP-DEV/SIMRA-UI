@@ -31,8 +31,12 @@ function SanitaryInpection() {
   const [question7Answer, setQuestion7Answer] = useState('');
   const [question8Answer, setQuestion8Answer] = useState('');
   
+  const [showButton, setShowButton] = useState(false);
+const toggleButton = () => {
+setShowButton(!showButton); };
   
   const divStyleCentered = {
+    border: '5px solid blackS',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -42,14 +46,18 @@ function SanitaryInpection() {
   };
   
   const divStyle = {
-    backgroundColor: 'black',
-    width: '350px',
+    backgroundColor: 'transparent', // Make the background color transparent
+    width: '100%',
     height: '40px',
-    color: 'white',
+    color: 'blue', // Set the text color to blue
+    border: '1px solid blue', // Add blue borders
+    borderRadius: '4px', // Optionally, add rounded corners
+    
   };
   
+  
   const divStyleSubmit = {
-    backgroundColor: 'Aqua',
+    backgroundColor: 'blue',
     width: '200px',
     height: '50px',
     color: 'white',
@@ -57,9 +65,11 @@ function SanitaryInpection() {
     
   };
   const containerStyle = {
-    border: '5px solid Aqua',
-    borderRadius: '10px', // Optional: Add rounded corners
-    padding: '20px', // Optional: Add padding to the container
+    border: '1px solid grey',
+    borderRadius: '10px', 
+    padding: '20px', 
+    
+    alignItems: 'center',
   };
   const handleMenuClick = (menu) => {
     setActiveMenu(menu === activeMenu ? null : menu);
@@ -179,13 +189,12 @@ if (percentage <= 25) {
         
         <>
         <Container fluid>
-          <Row className="justify-content-center align-items-center min-vh-100">
+          <Row className="justify-content-center">
           <Col xs={12} sm={8} md={6}>
           <div backgroundColor='white' style={containerStyle}>
-        <div >Survey</div>
-          <div className="menu-item" style={divStyle} onClick={() => handleMenuClick('sanitary')}>
-            Sanitary Survey {completedProcessSanitarySurvey && <span style={{ marginLeft: '110px' }}>Completed {completedQuestions}/8</span>}
-          </div>
+        <div style={{color: 'black', textAlign: 'center'}}>Survey</div>
+         
+          <Button variant="outline-primary" style={{ width: '100%' }} onClick={() => handleMenuClick('sanitary')} >Sanitary Survey {completedProcessSanitarySurvey && <span style={{ marginLeft: '300px' }}>Completed {completedQuestions}/8</span>}</Button>
           {activeMenu === 'sanitary' && (
             <div className="submenu">
   
@@ -365,45 +374,44 @@ if (percentage <= 25) {
                   </td>
                 </tr>
               </table>
-              
-            </div>
-          )}
-
-<Popup
+              <Popup
   trigger={
-    <button
-      type="button"
+    <Button
+      variant="outline-primary" style={{ width: '50%' }}
       onClick={handleFormSubmit}
-      style={divStyleSubmit}
+      
     >
       Show Risk Level
-    </button>
+    </Button>
   }
   modal
   nested
   
   overlayStyle={{
-    backgroundColor: 'rgba(0, 0, 0, 0.5)', // This sets the background color with transparency
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', 
   }}
 >
   {(close) => (
     
-      <Card style={{ border: '5px solid aqua', margin: 0, padding: 0 }}>
+      <Card variant="outline-primary">
         <Card.Header>Risk Level:</Card.Header>
         <Card.Text>{riskLevelBlock}</Card.Text>
         <Card.Text className="text-center">
-          <button
-            type="button"
+          <Button
+            variant="outline-primary" style={{ width: '50%' }}
             onClick={showMethods}
-            style={divStyleSubmit}
           >
             METHODS
-          </button>
+          </Button>
         </Card.Text>
       </Card>
     
   )}
 </Popup>
+            </div>
+          )}
+
+
 
   
 
