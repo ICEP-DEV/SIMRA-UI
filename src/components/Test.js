@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Popup from 'reactjs-popup';
+import Card from 'react-bootstrap/Card';
+import 'reactjs-popup/dist/index.css';
+import Button from 'react-bootstrap/Button';
 import './Test.css';
 
 const ButtonGroup = () => {
@@ -118,9 +122,39 @@ const ButtonGroup = () => {
                     </div>
                     <br></br>
 
-                    <button onClick={handleSubmitButton} className='d-inline p-2 bg-primary text-white mt-5' type="submit" value="Submit" style={divStyleSubmit}>
-                        SUBMIT
-                    </button>
+                    <Popup
+  trigger={
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <Button
+        variant="outline-primary"
+        style={{ width: '50%' }}
+        onClick={handleFormSubmit}
+      >
+        Show Risk Level
+      </Button>
+    </div>
+  }
+  modal
+  nested
+  overlayStyle={{
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  }}
+>
+  {(close) => (
+    <Card variant="outline-primary">
+      <Card.Header>Risk Level:</Card.Header>
+      <Card.Text className="text-center">
+        <Button
+          variant="outline-primary"
+          style={{ width: '50%' }}
+          onClick={showMethods}
+        >
+          METHODS
+        </Button>
+      </Card.Text>
+    </Card>
+  )}
+</Popup>
                     <br></br>
 
                     {isYellowTextVisible &&  (

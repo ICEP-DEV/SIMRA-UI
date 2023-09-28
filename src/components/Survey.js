@@ -376,38 +376,39 @@ if (percentage <= 25) {
               </table>
               <Popup
   trigger={
-    <Button
-      variant="outline-primary" style={{ width: '50%' }}
-      onClick={handleFormSubmit}
-      
-    >
-      Show Risk Level
-    </Button>
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <Button
+        variant="outline-primary"
+        style={{ width: '50%' }}
+        onClick={handleFormSubmit}
+      >
+        Show Risk Level
+      </Button>
+    </div>
   }
   modal
   nested
-  
   overlayStyle={{
-    backgroundColor: 'rgba(0, 0, 0, 0.5)', 
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   }}
 >
   {(close) => (
-    
-      <Card variant="outline-primary">
-        <Card.Header>Risk Level:</Card.Header>
-        <Card.Text>{riskLevelBlock}</Card.Text>
-        <Card.Text className="text-center">
-          <Button
-            variant="outline-primary" style={{ width: '50%' }}
-            onClick={showMethods}
-          >
-            METHODS
-          </Button>
-        </Card.Text>
-      </Card>
-    
+    <Card variant="outline-primary">
+      <Card.Header>Risk Level:</Card.Header>
+      <Card.Text>{riskLevelBlock}</Card.Text>
+      <Card.Text className="text-center">
+        <Button
+          variant="outline-primary"
+          style={{ width: '50%' }}
+          onClick={showMethods}
+        >
+          METHODS
+        </Button>
+      </Card.Text>
+    </Card>
   )}
 </Popup>
+
             </div>
           )}
 
