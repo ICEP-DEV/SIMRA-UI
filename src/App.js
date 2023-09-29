@@ -14,12 +14,13 @@ import Login from './components/Login';
 import RegisterForm from './components/RegisterForm';
 import RiskLevelPage from './components/Risk-Level' 
 import ReferancePathogen from './components/ReferancePathogen';
+import BarChart from './components/BarChart';
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<ReferancePathogen />} />
+        <Route path='/' element={<BarChart />} />
         <Route path='/Home' element={<Home />} />
         <Route path='/Water' element={<Water />} />
         <Route path='/Sampling' element={<Sampling />} />
@@ -29,6 +30,7 @@ const App = () => {
         <Route path='/Risk-Level' element={<RiskLevelPage />} /> 
         <Route path='/Register' element={<RegisterForm />} />
         <Route path='/Test' element={<Test />} />
+        <Route path='/BarChart' element={<BarChart />} />
       </Routes>
     </BrowserRouter>
   );

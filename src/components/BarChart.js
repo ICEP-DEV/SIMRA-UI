@@ -1,37 +1,86 @@
 import React, { Component } from 'react';
-import { Bar } from 'react-chartjs-2';
+import Chart from "react-apexcharts";
 
-const data = {
-    labels: ['Province 1', 'Province 2', 'Province 3', 'Province 4', 'Province 5'],
-    datasets: [
-      {
-        label: 'Mean Bacteria Level',
-        backgroundColor: 'rgba(75, 192, 192, 0.6)',
-        borderColor: 'rgba(75, 192, 192, 1)',
-        borderWidth: 1,
-        data: [3.5, 4.2, 2.8, 5.1, 3.9], 
-      },
-    ],
-  };
+
   
   function BarChart() {
+
+    const [state, setState] = useState({
+      options: {
+        colors: ["#4472c4", "#ed7d31", "#a5a5a5", "#ffc000", "#5b9bd5", "#70ad47", "#264478", "#9e480e"],
+        chart: {
+          id: "basic-bar",
+        },
+        xaxis: {
+          categories: ['Tshilapfene', 'Njhakanjhaka', 'Ha-mutsha', 'Tsiada'],
+        },
+        plotOptions: {
+          bar: {
+            columnWidth: '80%',
+          },
+          
+        },
+      },
+      series: [
+        {
+          name: "C.perfringes",
+          data: [100, 100, 250, 250],
+          barWidth: 20,
+        },
+        {
+          name: "C. perfriges wet",
+          data: [18000, 25000, 22000, 19000],
+          barWidth: 20,
+        },
+        {
+          name: "Faecal coliform dry",
+          data: [180000, 250000, 220000, 190000],
+          barWidth: 20,
+        },
+        {
+          name: "Faecal coliform wet",
+          data: [205000, 215000, 217000, 190000],
+          barWidth: 20,
+        },
+        {
+          name: "E. coli dry",
+          data: [10000, 5000, 9000, 10000],
+          barWidth: 20,
+        },
+        {
+          name: "E. coli wet",
+          data: [120000, 110000, 120000, 105000],
+          barWidth: 20,
+        },
+        {
+          name: "E. faecalis dry",
+          data: [130000, 175000, 200000, 130000],
+          barWidth: 20,
+        },
+        {
+          name: "E. faecalis wet",
+          data: [190000, 175000, 180000, 220000],
+          barWidth: 20,
+        },
+      ],
+    });
     return (
+      <div className="App">
+      <h1>
+        Results: FIB 
+      </h1>
       <div>
-        <Bar
-          data={data}
-          options={{
-            scales: {
-              y: {
-                beginAtZero: true,
-                title: {
-                  display: true,
-                  text: 'Mean Bacteria Level',
-                },
-              },
-            },
-          }}
-        />
+        <div>
+          <Chart
+            options={state.options}
+            series={state.series}
+            type="bar"
+            width="100%"
+            height="700"
+          />
+        </div>
       </div>
+    </div>
     );
   }
   
