@@ -15,12 +15,14 @@ import RegisterForm from './components/RegisterForm';
 import RiskLevelPage from './components/Risk-Level' 
 import ReferancePathogen from './components/ReferancePathogen';
 import BarChart from './components/BarChart';
+import Graph from './components/Graph';
+import RUNQMRA from './components/RUNQMRA';
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<BarChart />} />
+        <Route path='/' element={<RUNQMRA />} />
         <Route path='/Home' element={<Home />} />
         <Route path='/Water' element={<Water />} />
         <Route path='/Sampling' element={<Sampling />} />
@@ -31,6 +33,8 @@ const App = () => {
         <Route path='/Register' element={<RegisterForm />} />
         <Route path='/Test' element={<Test />} />
         <Route path='/BarChart' element={<BarChart />} />
+        <Route path='/Graph' element={<Graph />} />
+        <Route path='/RUNQMRA' element={<RUNQMRA />} />
       </Routes>
     </BrowserRouter>
   );
