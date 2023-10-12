@@ -42,7 +42,7 @@ function RunQMRA(){
   {(close) => (
     <Card variant="outline-primary">
       <Card.Header>QMRA Results</Card.Header>
-      <Card.Text><div style={{  color: 'blue' }}>Beta-Poisson</div></Card.Text>
+      <Card.Text><div style={{  color: 'blue' }}>The Probability Of Infection For</div></Card.Text>
       <Card.Text className="text-center">
         <Button
           variant="outline-primary"

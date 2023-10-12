@@ -17,12 +17,13 @@ import ReferancePathogen from './components/ReferancePathogen';
 import BarChart from './components/BarChart';
 import Graph from './components/Graph';
 import RUNQMRA from './components/RUNQMRA';
+import PathogenData from './components/PathogenData';
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<RUNQMRA />} />
+        <Route path='/' element={<PathogenData />} />
         <Route path='/Home' element={<Home />} />
         <Route path='/Water' element={<Water />} />
         <Route path='/Sampling' element={<Sampling />} />
@@ -35,6 +36,7 @@ const App = () => {
         <Route path='/BarChart' element={<BarChart />} />
         <Route path='/Graph' element={<Graph />} />
         <Route path='/RUNQMRA' element={<RUNQMRA />} />
+        <Route path='/PathogenData' element={<PathogenData />} />
       </Routes>
     </BrowserRouter>
   );
