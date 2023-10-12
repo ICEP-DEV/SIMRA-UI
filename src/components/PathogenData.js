@@ -18,7 +18,11 @@ function PathogenData() {
   const handleRadioButtonChange = (event) => {
     setSelectedRadioButton(event.target.value);
   };
+  const handleTextBoxChange = (event) => {
+    setTextBoxValue(event.target.value);
+  };
 
+  const [textBoxValue, setTextBoxValue] = useState('');
   return (
     <>
       <br></br>
@@ -130,15 +134,25 @@ function PathogenData() {
                 </div>
                 {selectedRadioButton && (
                   <div >
-                    <p style={{color: 'black'}}>You have selected: {selectedRadioButton}</p>
+                    <p style={{color: 'black'}}>{selectedRadioButton} <input
+      type="text"
+      placeholder="count ml/"
+      value={textBoxValue}
+      onChange={handleTextBoxChange}
+    /></p>
+                    
                   </div>
                 )}
+                <div style={{ textAlign: 'center' }}>
+  <Button variant="outline-primary" style={{ width: '50%', margin: 'auto' }}>
+    Next
+  </Button>
+</div>
               </div>
               
             )}
-            <Button variant="outline-primary" style={{ width: '50%' }}>
-                    Next
-                  </Button>
+           
+
           </Col>
         </Row>
       </Container>
