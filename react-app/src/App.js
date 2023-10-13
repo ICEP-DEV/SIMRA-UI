@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Table, Button, Form, FormControl, InputGroup } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {
@@ -23,7 +24,7 @@ function App() {
     setRows(updatedRows);
   };
 
-  /*const renderRows = () => {
+  const renderRows = () => {
     return rows.map((row, index) => (
       <tr key={index}>
         <td>
@@ -93,21 +94,13 @@ function App() {
         </td>
       </tr>
     ));
-  };*/
-
-  const renderRows =<div>
-    {/* {rows.map((row, index) => (
-      <table>
-        <tr></tr>
-      </table>
-    ))} */}
-  </div>
+  };
 
   return (
     <Container>
-      {/* <h1>MST DATA</h1>
+      <h1>MST DATA</h1>
       <Table striped bordered hover>
-        <thead >
+        <thead className="blue-bg">
           <tr>
             <th>Count</th>
             <th>MST Maker Genes</th>
@@ -120,7 +113,7 @@ function App() {
       </Table>
       <Button variant="primary" onClick={addRow}>
         Add Row
-      </Button> */}
+      </Button>
     </Container>
   );
 }
