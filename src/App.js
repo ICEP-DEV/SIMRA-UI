@@ -18,12 +18,14 @@ import BarChart from './components/BarChart';
 import Graph from './components/Graph';
 import RUNQMRA from './components/RUNQMRA';
 import PathogenData from './components/PathogenData';
+import RunQMRALevel3 from './components/RunQMRALevel3';
+import Graphlevel3 from './components/GraphLevel3';
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<PathogenData />} />
+        <Route path='/' element={<Graphlevel3 />} />
         <Route path='/Home' element={<Home />} />
         <Route path='/Water' element={<Water />} />
         <Route path='/Sampling' element={<Sampling />} />
@@ -33,9 +35,10 @@ const App = () => {
         <Route path='/Risk-Level' element={<RiskLevelPage />} /> 
         <Route path='/Register' element={<RegisterForm />} />
         <Route path='/Test' element={<Test />} />
-        <Route path='/BarChart' element={<BarChart />} />
         <Route path='/Graph' element={<Graph />} />
+        <Route path='/Graphlevel3' element={<Graphlevel3 />} />
         <Route path='/RUNQMRA' element={<RUNQMRA />} />
+        <Route path='/RunQMRALevel3' element={<RunQMRALevel3 />} />
         <Route path='/PathogenData' element={<PathogenData />} />
       </Routes>
     </BrowserRouter>
