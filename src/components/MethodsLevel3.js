@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 
-function MethodsLevel2() {
+function MethodsLevel3() {
 
     const navigate = useNavigate();
     const divStyleCetered = {
@@ -84,4 +84,4 @@ function MethodsLevel2() {
     );
 }
 
-export default MethodsLevel2;
+export default MethodsLevel3;

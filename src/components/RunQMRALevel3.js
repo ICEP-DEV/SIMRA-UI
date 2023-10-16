@@ -20,6 +20,43 @@ function RunQMRALevel3(){
     const ShowGraph = () => {
       navigate(`/Graph`);
     };
+    const showMethods = () => {
+      navigate(`/MethodsLevel3`);
+    };
+    const riskProp = 1; 
+let riskLevelBlock = null; 
+
+if (riskProp > 1) {
+  riskLevelBlock = (
+    <>
+    <div style={{ backgroundColor: 'green', padding: '15px' }}>
+      <span style={{ color: 'black' }}>Low Risk</span>
+    </div>
+    <div className="text-center">
+    <Button
+          variant="outline-primary"
+          style={{ width: '50%' }}
+          onClick={ShowGraph}
+        >
+          Graph
+        </Button></div>
+    </>
+  );
+}else {
+  riskLevelBlock = (
+    <><div style={{ backgroundColor: 'red', padding: '5px' }}>
+      <span style={{ color: 'black' }}>Very High Risk</span>
+    </div>
+    <div className="text-center">
+    <Button
+          variant="outline-primary"
+          style={{ width: '50%' }}
+          onClick={showMethods}
+        >
+          Methods
+        </Button></div></>
+  );
+}
    return(
       <>
         <Container fluid>
