@@ -1,242 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Table Form</title>
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
 
-<body>
-  <div class="container">
-    <h1>FIB DATA</h1>
-    <table class="table table-bordered" id="data-table">
-      <thead>
-        <tr>
-          <th>Count</th>
-          <th>Indicator</th>
-          <th>Ratio</th>
-          <th>Reference Pathogen</th>
-          <th>Model</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><input type="text" name="count_1"></td>
-          <td>
-            <select name="indicator_1" class="form-control" onchange="updateRatioOptions(this)">
-              <option value="">--Select--</option>
-              <option value="Coliforms">Coliforms</option>
-              <option value="Ecoli">E. coli</option>
-              <option value="Enterococcus">Enterococcus</option>
-              <option value="Clostridium">Clostridium</option>
-              <option value="Other">Other</option>
-            </select>
-            <input type="text" name="other_indicator_1" class="form-control" style="display: none;">
-          </td>
-          <td>
-            <select name="ratio_1" class="form-control">
-              <option value="1:1">1:1</option>
-              <option value="1:0.66">1:0.66</option>
-              <option value="1:0.01">1:0.01</option>
-              <option value="1:0.8">1:0.8</option>
-            </select>
-            <input type="text" name="other_ratio_1" class="form-control" style="display: none;">
-          </td>
-          <td>
-            <select name="pathogen_1" class="form-control" onchange="updateModelOptions(this)">
-              <option value="">--Select--</option>
-              <option value="Cryptosporidium parvum">Cryptosporidium parvum</option>
-              <option value="E. coli O157:H7">E. coli O157:H7</option>
-              <option value="Campylobacter jejuni">Campylobacter jejuni</option>
-              <option value="Salmonella typhi">Salmonella typhi</option>
-              <option value="S. Flexneri">S. Flexneri</option>
-              <option value="Vibrio cholera">Vibrio cholera</option>
-              <option value="Giardia lambia">Giardia lambia</option>
-              <option value="Entamoeba coli">Entamoeba coli</option>
-              <option value="Other">Other</option>
-            </select>
-            <input type="text" name="other_pathogen_1" class="form-control" style="display: none;">
-          </td>
-          </td>
-          <td>
-            <select name="model_1" class="form-control">
-              <option value="Beta-Poisson">Beta-Poisson</option>
-              <option value="Exponential">Exponential</option>
-            </select>
-            <input type="text" name="other_model_1" class="form-control" style="display: none;">
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <button class="btn btn-primary" id="add-row-btn">Add Row</button>
-  </div>
-
-  <div class="d-flex justify-content-center">
-    <button class="btn btn-dark" id="calculateEstimatedCount">Calculate Estimated Count</button>
-  </div>
-  </div>
-
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-  <script>
-    const addRowButton = document.getElementById('add-row-btn');
-    const dataTable = document.getElementById('data-table');
-    const calculateButton = document.getElementById('calculate-estimated-count');
-    let rowCount = 1;
-
-    addRowButton.addEventListener('click', () => {
-      rowCount++;
-      const newRow = document.createElement('tr');
-      newRow.innerHTML = `
-                <td><input type="text" name="count_${rowCount}" class="form-control"></td>
-                <td>
-                    <select name="indicator_${rowCount}" class="form-control" onchange="updateRatioOptions(this)">
-                        <option value="">--Select--</option>
-                        <option value="Coliforms">Coliforms</option>
-                        <option value="Ecoli">E. coli</option>
-                        <option value="Enterococcus">Enterococcus</option>
-                        <option value="Clostridium">Clostridium</option>
-                        <option value="Other">Other</option>
-                    </select>
-                    <input type="text" name="other_indicator_${rowCount}" class="form-control" style="display: none;">
-                </td>
-                <td>
-                    <select name="ratio_${rowCount}" class="form-control">
-                        <option value="1:1">1:1</option>
-                        <option value="1:0.66">1:0.66</option>
-                        <option value="1:0.01">1:0.01</option>
-                        <option value="1:0.8">1:0.8</option>
-                    </select>
-                    <input type="text" name="other_ratio_${rowCount}" class="form-control" style="display: none;">
-                </td>
-                <td>
-                    <select name="pathogen_${rowCount}" class="form-control" onchange="updateModelOptions(this)">
-                        <option value="">--Select--</option>
-                        <option value="Cryptosporidium parvum">Cryptosporidium parvum</option>
-                        <option value="E. coli O157:H7">E. coli O157:H7</option>
-                        <option value="Campylobacter jejuni">Campylobacter jejuni</option>
-                        <option value="Salmonella typhi">Salmonella typhi</option>
-                        <option value="S. Flexneri">S. Flexneri</option>
-                        <option value="Vibrio cholera">Vibrio cholera</option>
-                        <option value="Giardia lambia">Giardia lambia</option>
-                        <option value="Entamoeba coli">Entamoeba coli</option>
-                        <option value="Other">Other</option>
-                    </select>
-                    <input type="text" name="other_pathogen_${rowCount}" class="form-control" style="display: none;">
-                </td>
-                <td>
-                    <select name="model_${rowCount}" class="form-control">
-                        <option value="Beta-Poisson">Beta-Poisson</option>
-                        <option value="Exponential">Exponential</option>
-                    </select>
-                    <input type="text" name="other_model_${rowCount}" class="form-control" style="display: none;">
-                </td>
-            `;
-      dataTable.querySelector('tbody').appendChild(newRow);
-    });
-
-    function updateRatioOptions(selectElement) {
-      const rowIndex = selectElement.name.split('_')[1];
-      const indicatorSelect = document.querySelector(`[name=indicator_${rowIndex}]`);
-      const ratioSelect = document.querySelector(`[name=ratio_${rowIndex}]`);
-
-      const otherIndicatorInput = document.querySelector(`[name=other_indicator_${rowCount}]`);
-      const otherRatioInput = document.querySelector(`[name=other_ratio_${rowCount}]`);
-
-      const indicatorValue = selectElement.value;
-      const ratioValue = selectElement.value;
-
-      if (indicatorValue === 'Coliforms') {
-        ratioSelect.innerHTML = `
-                    <option value="1:1">1:1</option>   
-                `;
-      } else if (indicatorValue === 'Ecoli') {
-        ratioSelect.innerHTML = `
-                    <option value="1:0.66">1:0.66</option>
-                `;
-      } else if (indicatorValue === 'Enterococcus') {
-        ratioSelect.innerHTML = `
-                    <option value="1:0.01">1:0.01</option>
-                `;
-      } else if (indicatorValue === 'Clostridium') {
-        ratioSelect.innerHTML = `
-                    <option value="1:0.8">1:0.8</option>
-                `;
-      } else {
-        ratioSelect.innerHTML = `
-                    <option value="1:1">1:1</option>
-                    <option value="1:0.66">1:0.66</option>
-                    <option value="1:0.01">1:0.01</option>
-                    <option value="1:0.8">1:0.8</option>
-                `;
-      }
-
-      if (indicatorValue === 'Other') {
-        ratioSelect.style.display = 'none';
-        otherIndicatorInput.style.display = 'block';
-      } else {
-        ratioSelect.style.display = 'block';
-        otherIndicatorInput.style.display = 'none';
-      }
-
-      if (ratioValue === 'Other') {
-        otherRatioInput.style.display = 'block';
-        ratioSelect.style.display = 'none';
-      } else {
-        otherRatioInput.style.display = 'none';
-        ratioSelect.style.display = 'block';
-      }
-
-    }
-
-    function updateModelOptions(selectElement) {
-      const rowIndex = selectElement.name.split('_')[1];
-      const pathogenSelect = document.querySelector(`[name=pathogen_${rowIndex}]`);
-      const modelSelect = document.querySelector(`[name=model_${rowIndex}]`);
-
-      const otherPathogenInput = document.querySelector(`[name=other_pathogen_${rowCount}]`);
-      const otherModelInput = document.querySelector(`[name=other_model_${rowCount}]`);
-
-      const pathogenValue = selectElement.value;
-      const modelValue = selectElement.value;
-
-      if (pathogenValue === 'Cryptosporidium parvum' || pathogenValue === 'Giardia lambia') {
-        modelSelect.innerHTML = `
-                    <option value="Exponential">Exponential</option>
-                `;
-      } else {
-        modelSelect.innerHTML = `
-                    <option value="Beta-Poisson">Beta-Poisson</option>
-                `;
-      }
-
-      if (pathogenValue === 'Other') {
-        otherPathogenInput.style.display = 'block';
-        pathogenSelect.style.display = 'none';
-      } else {
-        otherPathogenInput.style.display = 'none';
-        pathogenSelect.style.display = 'block';
-      }
-
-      if (modelValue === 'Other') {
-        otherModelInput.style.display = 'block';
-        modelSelect.style.display = 'none';
-      } else {
-        otherModelInput.style.display = 'none';
-        modelSelect.style.display = 'block';
-      }
-    }
-
-    document.getElementById('calculateEstimatedCount').addEventListener('click', function () {
-
-      alert('Estimated Count calculated.');
-    });
-  </script>
-</body>
-
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
 </html>
