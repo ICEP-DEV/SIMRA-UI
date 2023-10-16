@@ -25,7 +25,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Graphlevel3 />} />
+        <Route path='/' element={<RUNQMRA />} />
         <Route path='/Home' element={<Home />} />
         <Route path='/Water' element={<Water />} />
         <Route path='/Sampling' element={<Sampling />} />

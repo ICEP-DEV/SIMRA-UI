@@ -20,6 +20,43 @@ function RunQMRA(){
     const ShowGraph = () => {
       navigate(`/Graph`);
     };
+    const showMethods = () => {
+      navigate(`/MethodsLevel2`);
+    };
+    const riskProp = 1; 
+let riskLevelBlock = null; 
+
+if (riskProp < 1) {
+  riskLevelBlock = (
+    <>
+    <div style={{ backgroundColor: 'green', padding: '15px' }}>
+      <span style={{ color: 'black' }}>Low Risk</span>
+    </div>
+    <div className="text-center">
+    <Button
+          variant="outline-primary"
+          style={{ width: '50%' }}
+          onClick={ShowGraph}
+        >
+          Graph
+        </Button></div>
+    </>
+  );
+}else {
+  riskLevelBlock = (
+    <><div style={{ backgroundColor: 'red', padding: '5px' }}>
+      <span style={{ color: 'black' }}>Very High Risk</span>
+    </div>
+    <div className="text-center">
+    <Button
+          variant="outline-primary"
+          style={{ width: '50%' }}
+          onClick={showMethods}
+        >
+          Methods
+        </Button></div></>
+  );
+}
    return(
       <>
         <Container fluid>
@@ -43,15 +80,8 @@ function RunQMRA(){
     <Card variant="outline-primary">
       <Card.Header>QMRA Results</Card.Header>
       <Card.Text><div style={{  color: 'blue' }}>The Probability Of Infection For</div></Card.Text>
-      <Card.Text className="text-center">
-        <Button
-          variant="outline-primary"
-          style={{ width: '50%' }}
-          onClick={ShowGraph}
-        >
-          Graph
-        </Button>
-      </Card.Text>
+      <Card.Text>{riskLevelBlock}</Card.Text>
+     
     </Card>
   )}
 </Popup>
