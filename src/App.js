@@ -22,12 +22,14 @@ import RunQMRALevel3 from './components/RunQMRALevel3';
 import Graphlevel3 from './components/GraphLevel3';
 import MethodsLevel2 from './components/MethodsLevel2';
 import MethodsLevel3 from './components/MethodsLevel3';
+import PathogenDataLevel3 from './components/PathogenDataLevel3';
+import RunQMRA from './components/RUNQMRA';
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<RunQMRALevel3 />} />
+        <Route path='/' element={<RunQMRA />} />
         <Route path='/Home' element={<Home />} />
         <Route path='/Water' element={<Water />} />
         <Route path='/Sampling' element={<Sampling />} />
@@ -44,6 +46,7 @@ const App = () => {
         <Route path='/PathogenData' element={<PathogenData />} />
         <Route path='/MethodsLevel2' element={<MethodsLevel2 />} />
         <Route path='/MethodsLevel3' element={<MethodsLevel3 />} />
+        <Route path='/PathogenDataLevel3' element={<PathogenDataLevel3 />} />
       </Routes>
     </BrowserRouter>
   );
