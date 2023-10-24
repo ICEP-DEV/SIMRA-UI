@@ -1,128 +1,126 @@
-import logo from './logo.svg';
-import './App.css';
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Table, Button, Form, FormControl, InputGroup } from 'react-bootstrap';
+import { Container, Table, Button, Form } from 'react-bootstrap';
+import Modal from 'react-modal';
 
 function App() {
   const [rowCount, setRowCount] = useState(1);
+  const [rowData, setRowData] = useState([
+    {
+      count: '',
+      mstMaker: '',
+      ratio: '',
+      pathogen: '',
+      model: '',
+    },
+  ]);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [countEstimate, setCountEstimate] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const addRow = () => {
     setRowCount(rowCount + 1);
+    setRowData([
+      ...rowData,
+      {
+        count: '',
+        mstMaker: '',
+        ratio: '',
+        pathogen: '',
+        model: '',
+      },
+    ]);
+  };
+
+  const handleCountChange = (event, index) => {
+    const updatedRowData = [...rowData];
+    updatedRowData[index].count = event.target.value;
+    setRowData(updatedRowData);
+  };
+
+  const handleMstMakerChange = (event, index) => {
+    const selectedMstMaker = event.target.value;
+    const updatedRowData = [...rowData];
+    updatedRowData[index].mstMaker = selectedMstMaker;
+    const defaultRatio = getDefaultRatio(selectedMstMaker);
+    updatedRowData[index].ratio = defaultRatio;
+    setRowData(updatedRowData);
+  };
+
+  const handleRatioChange = (event, index) => {
+    const selectedRatio = event.target.value;
+    const updatedRowData = [...rowData];
+    updatedRowData[index].ratio = selectedRatio;
+    setRowData(updatedRowData);
+  };
+
+  const handlePathogenChange = (event, index) => {
+    const selectedPathogen = event.target.value;
+    const updatedRowData = [...rowData];
+    updatedRowData[index].pathogen = selectedPathogen;
+
+    if (selectedPathogen === 'Cryptosporidium parvum' || selectedPathogen === 'Giardia lambia') {
+      updatedRowData[index].model = 'Exponential';
+    } else if (selectedPathogen === 'Other') {
+      updatedRowData[index].model = '';
+    } else {
+      updatedRowData[index].model = getDefaultModel(selectedPathogen);
+    }
+    setRowData(updatedRowData);
+  };
+
+  const handleModelChange = (event, index) => {
+    const selectedModel = event.target.value;
+    const updatedRowData = [...rowData];
+    updatedRowData[index].model = selectedModel;
+    setRowData(updatedRowData);
   };
 
   const calculateEstimatedCount = () => {
     let estimatedCount = 0;
-
-    for (let index = 0; index < rowCount; index++) {
-      const countInput = document.querySelector(`[name=count_${index + 1}]`);
-      const ratioInput = document.querySelector(`[name=ratio_${index + 1}]`);
-
-      estimatedCount += parseFloat(countInput.value);
+    for (const row of rowData) {
+      // Implement your calculation logic here using row.count, row.ratio, row.model, etc.
     }
-
-    alert(`Estimated Count: ${estimatedCount}`);
-  }
-
-  const updateRatioOptions = (e) => {
-    const rowIndex = e.target.name.split('_')[1];
-    const mstmakerSelect = document.querySelector(`[name=mstmaker_${rowIndex}]`);
-    const ratioSelect = document.querySelector(`[name=ratio_${rowIndex}]`);
-
-    const otherMstMakerInput = document.querySelector(`[name=other_mstmaker_${rowIndex}]`);
-    const otherRatioInput = document.querySelector(`[name=other_ratio_${rowIndex}]`);
-
-    const mstmakerValue = e.target.value;
-    const ratioValue = e.target.value;;
-
-
-    if (mstmakerValue === 'Cow') {
-      ratioSelect.innerHTML = `
-                    <option value="1:0.66">1:0.66</option>   
-                `;
-    } else if (mstmakerValue === 'Human') {
-      ratioSelect.innerHTML = `
-                    <option value="1:1">1:1</option>
-                `;
-    } else if (mstmakerValue === 'Dog') {
-      ratioSelect.innerHTML = `
-                    <option value="1:0.01">1:0.01</option>
-                `;
-    } else if (mstmakerValue === 'Pig') {
-      ratioSelect.innerHTML = `
-                    <option value="1:0.8">1:0.8</option>
-                `;
-    } else if (mstmakerValue === 'Chicken') {
-      ratioSelect.innerHTML = `
-                    <option value="1:0.01">1:0.01</option>
-                          `;
-    } else {
-      ratioSelect.innerHTML = `
-                    <option value="1:0.66">1:0.66</option>
-                    <option value="1:1">1:1</option>
-                    <option value="1:0.01">1:0.01</option>
-                    <option value="1:0.8">1:0.8</option>
-                    <option value="1:0.01">1:0.01</option>
-                `;
-    }
-
-    if (mstmakerValue === 'Other') {
-      mstmakerSelect.style.display = 'none';
-      otherMstMakerInput.style.display = 'block';
-    } else {
-      ratioSelect.style.display = 'block';
-      otherMstMakerInput.style.display = 'none';
-    }
-    if (ratioValue === 'Other') {
-      otherRatioInput.style.display = 'block';
-      ratioSelect.style.display = 'none';
-    } else {
-      otherRatioInput.style.display = 'none';
-      ratioSelect.style.display = 'block';
-    }
-
+    setCountEstimate(estimatedCount);
+    setShowSuccessMessage(true);
+    openModal();
   };
-  const updateModelOptions = (e) => {
-    const rowIndex = e.target.name.split('_')[1];
-    const pathogenSelect = document.querySelector(`[name=pathogen_${rowIndex}]`);
-    const modelSelect = document.querySelector(`[name=model_${rowIndex}]`);
 
-    const otherPathogenInput = document.querySelector(`[name=other_pathogen_${rowIndex}]`);
-    const otherModelInput = document.querySelector(`[name=other_model_${rowIndex}]`);
-
-    const pathogenValue = e.target.value;
-    const modelValue = e.target.value;
-
-    if (pathogenValue === 'Cryptosporidium parvum' || pathogenValue === 'Giardia lambia') {
-      modelSelect.innerHTML = `
-                  <option value="Exponential">Exponential</option>
-              `;
-    } else {
-      modelSelect.innerHTML = `
-                  <option value="Beta-Poisson">Beta-Poisson</option>
-              `;
+  const getDefaultRatio = (selectedMstMaker) => {
+    switch (selectedMstMaker) {
+      case 'Cow':
+        return '1:0.66';
+      case 'Human':
+        return '1:1';
+      case 'Dog':
+        return '1:0.01';
+      case 'Pig':
+        return '1:0.08';
+      case 'Chicken':
+        return '1:0.01';
+      default:
+        return '';
     }
+  };
 
-    if (pathogenValue === 'Other') {
-      pathogenSelect.style.display = 'none';
-      otherPathogenInput.style.display = 'block';
-    } else {
-      modelSelect.style.display = 'block';
-      otherPathogenInput.style.display = 'none';
-    }
-    if (modelValue === 'Other') {
-      otherModelInput.style.display = 'block';
-      modelSelect.style.display = 'none';
-    } else {
-      otherModelInput.style.display = 'none';
-      modelSelect.style.display = 'block';
-    }
+  const getDefaultModel = (selectedPathogen) => {
+    return selectedPathogen === 'Cryptosporidium parvum' || selectedPathogen === 'Giardia lambia'
+      ? 'Exponential'
+      : 'Beta-Poisson';
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
     <Container className="mt-5">
       <h2 className="mb-3">MST DATA</h2>
-      <Table striped bordered>
+      <Table striped bordered hover>
         <thead className="thead-light">
           <tr>
             <th>Count</th>
@@ -133,13 +131,23 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          {Array.from({ length: rowCount }).map((_, index) => (
-            <tr key={index + 1}>
+          {rowData.map((row, index) => (
+            <tr key={index}>
               <td>
-                <Form.Control type="number" name={`count_${index + 1}`} />
+                <Form.Control
+                  type="text"
+                  name={`count_${index}`}
+                  value={row.count}
+                  onChange={(event) => handleCountChange(event, index)}
+                />
               </td>
               <td>
-                <Form.Control as="select" name={`mstmaker_${index + 1}`} onChange={updateRatioOptions}>
+                <Form.Control
+                  as="select"
+                  name={`mstMaker_${index}`}
+                  value={row.mstMaker}
+                  onChange={(event) => handleMstMakerChange(event, index)}
+                >
                   <option value="">--Select--</option>
                   <option value="Cow">Cow</option>
                   <option value="Human">Human</option>
@@ -148,69 +156,113 @@ function App() {
                   <option value="Chicken">Chicken</option>
                   <option value="Other">Other</option>
                 </Form.Control>
-                <FormControl
-                  type="text"
-                  name={`other_mstmaker_${index + 1}`}
-                  style={{ display: 'none' }}
-                />
+                {row.mstMaker === 'Other' && (
+                  <Form.Control
+                    type="text"
+                    placeholder=""
+                    name={`other_mstMaker_${index}`}
+                    onChange={(event) => handleMstMakerChange(event, index)}
+                  />
+                )}
               </td>
               <td>
-                <Form.Control as="select" name={`ratio_${index + 1}`}>
-                  <option value="">--Select--</option>
-                  <option value="1:0.66">1:0.66</option>
-                  <option value="1:1">1:1</option>
-                  <option value="1:0.01">1:0.01</option>
-                  <option value="1:0.08">1:0.08</option>
-                  <option value="1:0.01">1:0.01</option>
-                </Form.Control>
-                <FormControl
-                  type="text"
-                  name={`other_ratio_${index + 1}`}
-                  style={{ display: 'none' }}
-                />
+                {row.mstMaker === 'Other' ? (
+                  <Form.Control
+                    type="text"
+                    name={`ratio_${index}`}
+                    placeholder=""
+                    value={row.ratio}
+                    onChange={(event) => handleRatioChange(event, index)}
+                  />
+                ) : (
+                  <Form.Control
+                    as="select"
+                    name={`ratio_${index}`}
+                    value={row.ratio}
+                    onChange={(event) => handleRatioChange(event, index)}
+                  >
+                    <option value="">--Select--</option>
+                    <option value="1:0.66">1:0.66</option>
+                    <option value="1:1">1:1</option>
+                    <option value="1:0.01">1:0.01</option>
+                    <option value="1:0.08">1:0.08</option>
+                    <option value="1:0.01">1:0.01</option>
+                    <option value="Other">Other</option>
+                  </Form.Control>
+                )}
               </td>
               <td>
-                <Form.Control as="select" name={`pathogen_${index + 1}`} onChange={updateModelOptions}>
+                <Form.Control
+                  as="select"
+                  name={`pathogen_${index}`}
+                  value={row.pathogen}
+                  onChange={(event) => handlePathogenChange(event, index)}
+                >
                   <option value="">--Select--</option>
                   <option value="Cryptosporidium parvum">Cryptosporidium parvum</option>
-                  <option value="E. coli O157:H7">E. coli O157:H7</option>
-                  <option value="Campylobacter jejuni">Campylobacter jejuni</option>
-                  <option value="Salmonella typhi">Salmonella typhi</option>
-                  <option value="S. Flexneri">S. Flexneri</option>
-                  <option value="Vibrio cholera">Vibrio cholera</option>
+                  <option value="EcoliO157H7">E. coli O157:H7</option>
+                  <option value="Campylobacterjejuni">Campylobacter jejuni</option>
+                  <option value="Salmonellatyphi">Salmonella typhi</option>
+                  <option value="SFlexneri">S. Flexneri</option>
+                  <option value="Vibriocholera">Vibrio cholera</option>
                   <option value="Giardia lambia">Giardia lambia</option>
-                  <option value="Entamoeba coli">Entamoeba coli</option>
+                  <option value="Entamoebacoli">Entamoeba coli</option>
                   <option value="Other">Other</option>
                 </Form.Control>
-                <FormControl
-                  type="text"
-                  name={`other_pathogen_${index + 1}`}
-                  style={{ display: 'none' }}
-                />
+                {row.pathogen === 'Other' && (
+                  <Form.Control
+                    type="text"
+                    placeholder=""
+                    name={`other_pathogen_${index}`}
+                    onChange={(event) => handlePathogenChange(event, index)}
+                  />
+                )}
               </td>
               <td>
-                <Form.Control as="select" name={`model_${index + 1}`}>
-                  <option value="">--Select--</option>
-                  <option value="Beta-Poisson">Beta-Poisson</option>
-                  <option value="Exponential">Exponential</option>
-                </Form.Control>
-                <FormControl
-                  type="text"
-                  name={`other_model_${index + 1}`}
-                  style={{ display: 'none' }}
-                />
+                {row.pathogen === 'Other' ? (
+                  <Form.Control
+                    type="text"
+                    name={`model_${index}`}
+                    placeholder=""
+                    value={row.model}
+                    onChange={(event) => handleModelChange(event, index)}
+                  />
+                ) : (
+                  <Form.Control
+                    as="select"
+                    name={`model_${index}`}
+                    value={row.model}
+                    onChange={(event) => handleModelChange(event, index)}
+                  >
+                    <option value="">--Select--</option>
+                    <option value="Beta-Poisson">Beta-poisson</option>
+                    <option value="Exponential">Exponential</option>
+                    <option value="Other">Other</option>
+                  </Form.Control>
+                )}
               </td>
             </tr>
           ))}
         </tbody>
       </Table>
-      <Button variant="primary" id="add-row-btn" onClick={addRow}>
+      <Button className="btn btn-primary mt-5" variant="primary" id="add-row-btn" onClick={addRow}>
         Add Row
       </Button>
-      <div className="d-flex justify-content-center">
-        <Button variant="primary" id="calculateEstimatedCount" onClick={calculateEstimatedCount}>
+      <div className="text-center">
+        <Button className="btn btn-primary mt-5" id="calculateEstimatedCount" onClick={calculateEstimatedCount}>
           Calculate Estimated Count
         </Button>
+        <Modal
+          isOpen={isModalOpen}
+          onRequestClose={closeModal}
+          contentLabel="Count Estimate Modal"
+        >
+          <h2>Count Estimate</h2>
+          <p>The Estimated Count is: {countEstimate}</p>
+          <Button style={{ color: 'black' }} onClick={closeModal}>
+            Close
+          </Button>
+        </Modal>
       </div>
     </Container>
   );
