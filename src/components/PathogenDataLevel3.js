@@ -18,7 +18,7 @@ function PathogenDataLevel3() {
         setRows([...rows, { id: rowCount + 1 }]);
     };
 
-
+    const properbility = "";
     const ShowGraph = () => {
         navigate(`/Graph`);
     };
@@ -158,6 +158,7 @@ function PathogenDataLevel3() {
                 Add Row
             </Button>
             <div className="d-flex justify-content-center">
+                
                 <Popup
                     trigger={
                         <div>
@@ -173,7 +174,7 @@ function PathogenDataLevel3() {
                     {(close) => (
                         <Card variant="outline-primary">
                             <Card.Header>QMRA Results</Card.Header>
-                            <Card.Text><div style={{ color: 'blue' }}>The Probability Of Infection For</div></Card.Text>
+                            <Card.Text><div style={{ color: 'blue' }}>The Probability Of Infection For {properbility}</div></Card.Text>
                             <Card.Text>{riskLevelBlock}</Card.Text>
 
                         </Card>

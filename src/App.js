@@ -29,7 +29,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<RunQMRA />} />
+        <Route path='/' element={<RunQMRA/>} />
         <Route path='/Home' element={<Home />} />
         <Route path='/Water' element={<Water />} />
         <Route path='/Sampling' element={<Sampling />} />
