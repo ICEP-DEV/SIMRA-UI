@@ -8,7 +8,7 @@ function App() {
     <div className="App">
     <div className="fullscreen-content">
       <header className="App-header">
-        <h1 className="text-center">Probability of Infection</h1>
+        <h1 className="text-center">QMRA</h1>
         <LikelihoodOfInfection />
       </header>
     </div>
